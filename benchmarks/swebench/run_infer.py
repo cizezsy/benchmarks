@@ -259,10 +259,13 @@ class SWEBenchEvaluation(Evaluation):
             attempt=self.current_attempt,
         )
 
+        dummy_token_callback = lambda chunk : None
+
         conversation = Conversation(
             agent=agent,
             workspace=workspace,
             callbacks=[persist_callback],
+            token_callbacks=[dummy_token_callback],
             max_iteration_per_run=self.metadata.max_iterations,
             delete_on_close=True,
         )
